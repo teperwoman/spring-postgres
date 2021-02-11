@@ -17,6 +17,10 @@ spec:
       containers:
       - name: spring-postgres
         image: teperwoman/spring-postgres
+        imagePullPolicy: Always
+        env:
+          - name: POSTGRES_PASSWORD
+            value: db-wrz2z
         ports:
         - containerPort: 8080
 ---
