@@ -21,6 +21,8 @@ spec:
         env:
           - name: POSTGRES_PASSWORD
             value: db-wrz2z
+          - name: POSTGRES_DB
+            value: example
         ports:
         - containerPort: 8080
 ---
