@@ -1,0 +1,45 @@
+
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: spring-postgres
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spring-postgres
+  labels:
+    app: spring-postgres
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: spring-postgres
+  template:
+    metadata:
+      labels:
+        app: spring-postgres
+    spec:
+      containers:
+      - name: spring-postgres
+        image: tftest/spring-postgres
+        imagePullPolicy: Always
+        env:
+          - name: POSTGRES_PASSWORD
+            value: db-wrz2z
+          - name: POSTGRES_DB
+            value: example
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: spring-postgres
+spec:
+  selector:
+    app: spring-postgres
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
